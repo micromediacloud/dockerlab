@@ -1,0 +1,282 @@
+<section class="border bg-#EAE6E6 ">
+
+
+    <form (submit)="onSubmit(postForm)" [formGroup]="postForm">
+        <div class="patient-blocks">
+            <div class="row no-gutters">
+
+                <div class="col-md-12 text-center">
+                    <h4>Examinee Name</h4>
+                    <h3><b>Jane Doe</b></h3>
+                </div>
+                <div class="col-md-12 border">
+                    <div class="container-fluid blue patnote-tme text-light ">
+                        <div class="row  no-gutters  justify-content-around">
+                            <div class="col">
+                                <p>USMLE ID</p>
+                                <p>Room Number</p>
+                            </div>
+                            <div class="col">
+                                <p>0-123-456-7</p>
+                                <p>01</p>
+                            </div>
+                            <div class="col offset-sm-2">
+                                <p>Badge ID</p>
+                                <p>Encounter</p>
+                            </div>
+                            <div class="col">
+                                <p>2</p>
+
+                                <p>1</p>
+                            </div>
+                        </div>
+
+
+                        <div class="row no-gutters justify-content-center">
+                            <div class="col text-center">
+                                <div id="txtalert"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="patnote-times">
+                    <p><span style="text-align: center;font-size: xx-large;margin-bottom:5px"> ⏰</span> <span id="countdown-time" class="up-timer " style="text-align: center;background-color:unset;"><label id="minutes" style="margin-bottom:0;">00</label>:<label id="seconds" style="margin-bottom:0;">00</label></span></p>
+                    <span id="countdown-msg" class="patnote-txt"></span>
+                </div>
+                <div class="col-md-12  pt-5">
+                    <h3><b>HISTORY</b> : Describe the history you just obtained from this patient. Include only information (pertinent positives and negatives) relevant to this patient's problem(s)</h3>
+                </div>
+                <div class="col-md-12 col-md-12  col-xs-12" formGroupName="history">
+
+                    <textarea rows="6" name="historyContent" formControlName="historyContent" #historyContent (ngModel)="historyContent" (ngModelChange)="limitText($event,950)" maxlength="950"></textarea>
+
+                </div>
+                <div class="col-md-12 col-md-12  col-xs-12">
+                    <div class="processed">
+
+                        <div>
+
+                            <div class="processed_bar">
+                                <div id="txtComments_progressbar"></div>
+                            </div>
+                            <p>&nbsp;&nbsp;<b>Lines:</b>&nbsp;{{historyContent1}}/15</p>
+                            <p>&nbsp;&nbsp;<b>Characters:</b>&nbsp;{{historyContent.value.length}}/950</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12  col-md-12  col-xs-12 pt-3">
+                    <h3><b>PHYSICAL EXAMINATION</b> : Describe any positive and negative findings relevant to this patient's problem(s). Be careful to include only those parts of examination you performed in this encounter</h3>
+                </div>
+                <div class="col-md-12 col-md-12  col-xs-12 " formGroupName="phyExamine">
+
+                    <textarea rows="6" name="content" formControlName="phyExamineContent" #phyExamineContent maxlength="950"></textarea>
+
+                </div>
+                <div class="col-md-12 col-md-12  col-xs-12">
+                    <div class="processed">
+
+                        <div>
+
+                            <div class="processed_bar">
+                                <div id="txtComments_progressbar1"></div>
+                            </div>
+                            <p>&nbsp;&nbsp;<b>Lines:</b>&nbsp;<span id="text_line_count2"></span>{{phyExContent1}}/15</p>
+                            <p>&nbsp;&nbsp;<b>Characters:</b>&nbsp;{{phyExamineContent.value.length}}/950</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12 col-md-12  col-xs-12 pt-3">
+                    <h3>
+                        <b> DATA INTERPRETATION </b>: Based on what you have learned from the history and the physical examination, list up to 3 diagnoses that might explain this patient's complaint(s). List your diagnoses from most to least likely. For
+                        some cases, fewer than 3 diagnoses will be appropriate. Then, enter the positive or negative findings from the history and the physical examination (if present) that support each diagnosis. Lastly, list initial diagnostic studies
+                        (if any) you would order for each listed diagnosis (e.g. restricted physical exam maneuvers, laboratory tests, imaging, ECG, etc)</h3>
+                </div>
+                <div class="col-md-12" formGroupName="Diagnosis1">
+                    <div class="blocks ">
+                        <div class="list list_1">
+                            <div class="col-md-12 col-md-3 col-xs-3">
+                                <h4>Diagnosis #<span class="changeNo">1</span></h4>
+
+                                <input type="text" rows="6" formControlName="Diagnosis1t" name="diag">
+                            </div>
+                            <div class="container col-12 m-0">
+                                <div class="row no-gutters   d-xs-none justify-content-between ">
+                                    <!-- *ngFor="let unit of exampleForm.controls.units.controls; let i=index"> -->
+
+                                    <div class="col-md-5 mx-1 col-md-3 col-xs-3 m-0">
+                                        <h4>History Finding(s)</h4>
+
+                                        <input name="his_fin_1_1" type="text" rows="6" maxlength="80" autocomplete="off " formControlName="his_fin_1_1">
+                                        <input name="his_fin_1_2" type="text" rows="6" maxlength="80" formControlName="his_fin_1_2" autocomplete="off ">
+                                        <input name="his_fin_1_3" formControlName="his_fin_1_3" type="text" maxlength="80 " autocomplete="off ">
+                                        <!-- <span id="newlink " *ngIf="exampleForm.controls.units.controls.length > 1 && i > 0" >
+                                            [formGroupName]="i"
+                                        </span> -->
+                                    </div>
+
+                                    <div class="col-md-5 mx-1 col-md-3 col-xs-3 m-0 ">
+                                        <h4>Physical Exam Finding(s)</h4>
+
+                                        <input name="phy_ex_1_1 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="phy_ex_1_2 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="phy_ex_1_3 " type="text " maxlength="80 " autocomplete="off ">
+                                        <span id="newlink1 "></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="list-updown col-md-12 col-sm-3 col-xs-3 ">
+                        <a title="Up" id="swap" class="btn blue btn-lg text-light moveT1"><span><svg width="26" height="26" viewBox="0 0 26 26" style="transform: rotate(-90deg);">
+                                    
+                            <path style="fill:rgb(247, 248, 246);" d="M24 12l-12-9v5h-12v8h12v5l12-9z"></path>
+                         
+                            </svg></span></a>
+                        <a title="Add a Row " class="btn blue btn-lg text-light addRow1 " data-rowid="1 " data-rowcount="3 ">
+                    Add a Row</a>
+                    </div>
+                </div>
+                <!--Diagnosis #2  -->
+                <div class="col-md-12 ">
+                    <div class="blocks ">
+                        <div class="list list_1 ">
+                            <div class="col-md-12 col-md-3 col-xs-3 ">
+                                <h4>Diagnosis #<span class="changeNo ">2</span></h4>
+
+                                <input type="text ">
+                            </div>
+                            <div class="container col-12 m-0 ">
+                                <div class="row no-gutters d-xs-none justify-content-between ">
+
+                                    <div class="col-md-5 mx-1 col-md-3 col-xs-3 m-0 ">
+                                        <h4>History Finding(s)</h4>
+
+                                        <input name="his_fin_2_1 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="his_fin_2_2 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="his_fin_2_3 " type="text " maxlength="80 " autocomplete="off ">
+                                        <span id="newlink_1 "></span>
+
+                                    </div>
+
+                                    <div class="col-md-5 mx-1 col-md-3 col-xs-3 m-0 ">
+                                        <h4>Physical Exam Finding(s)</h4>
+
+                                        <input name="phy_ex_2_1 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="phy_ex_2_2 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="phy_ex_2_3 " type="text " maxlength="80 " autocomplete="off ">
+                                        <span id="newlink1_1 "></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-updown col-md-12 col-sm-3 col-xs-3 ">
+                    <a title="Up" id="swap" class="btn blue btn-lg text-light moveT1"><span><svg width="26" height="26" viewBox="0 0 26 26" style="transform: rotate(-90deg);">
+                                    
+                        <path style="fill:rgb(247, 248, 246);" d="M24 12l-12-9v5h-12v8h12v5l12-9z"></path>
+                     
+                        </svg></span></a>
+                    <a title="Add a Row " class="addRow2 btn blue btn-lg text-light " data-rowid="1 " data-rowcount="3 ">Add a Row</a>
+                </div>
+                <div class="list-updown col-md-12 col-sm-3 col-xs-3 mt-2">
+                    <a id="swap1" title="Up" class=" btn blue btn-lg text-light moveT2"><span><svg width="26" height="26" viewBox="0 0 26 26" style="transform: rotate(90deg);">
+                    
+                        <path style="fill:rgb(247, 248, 246);" d="M24 12l-12-9v5h-12v8h12v5l12-9z"></path>
+                        </svg></span></a>
+                </div>
+                <!-- Diagnosis #3 -->
+                <div class="col-md-12 ">
+                    <div class="blocks ">
+                        <div class="list list_1 ">
+                            <div class="col-md-12 col-md-3 col-xs-3 ">
+                                <h4>Diagnosis #<span class="changeNo ">3</span></h4>
+
+                                <input type="text ">
+                            </div>
+                            <div class="container col-12 m-0 ">
+                                <div class="row no-gutters d-xs-none justify-content-between ">
+
+                                    <div class="col-md-5 mx-1 col-md-3 col-xs-3 m-0 ">
+                                        <h4 id="hname ">History Finding(s)</h4>
+                                        <input name="his_fin_3_1 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="his_fin_3_2 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="his_fin_3_3 " type="text " maxlength="80 " autocomplete="off ">
+                                        <span id="newlink_2 "></span>
+
+                                    </div>
+
+
+
+
+                                    <div class="col-md-5 mx-1 col-md-3 col-xs-3 m-0 ">
+                                        <h4>Physical Exam Finding(s)</h4>
+                                        <input name="phy_ex_3_1 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="phy_ex_3_2 " type="text " maxlength="80 " autocomplete="off ">
+                                        <input name="phy_ex_3_3 " type="text " maxlength="80 " autocomplete="off ">
+                                        <span id="newlink1_2 "></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-updown col-md-12 col-sm-3 col-xs-3 d-flex justify-content-between ">
+                    <a id="swap1" title="Up" class=" btn blue btn-lg text-light moveT2"><span>
+                        <svg width="26" height="26" viewBox="0 0 26 26" style="transform: rotate(-90deg);">
+                        
+                        <path style="fill:rgb(247, 248, 246);" d="M24 12l-12-9v5h-12v8h12v5l12-9z"></path>
+                           
+                         
+                            </svg></span></a>
+                    <a title="Add a Row " class=" addRow3 btn blue btn-lg text-light " data-rowid="1 " data-rowcount="3 ">
+                    Add a Row</a>
+                </div>
+                <!-- Diagnosis Study/Studies -->
+                <div class="col-md-12 ">
+                    <div class="blocks ">
+                        <div class="list list_1 ">
+                            <div class="col-md-12 col-md-3 col-xs-3 ">
+                                <h4>Diagnostic Study/Studies</h4>
+
+                                <input name="diag_study1 " type="text " maxlength="80 " autocomplete="off ">
+                                <input name="diag_study2 " type="text " maxlength="80 " autocomplete="off ">
+                                <input name="diag_study3 " type="text " maxlength="80 " autocomplete="off ">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- email -->
+                <div class="col-md-12 row justify-content-md-center ">
+                    <div class="blocks ">
+                        <div class="list list_1 row justify-content-md-center ">
+                            <div class="col-md-12 mx-1 col-xs-6 m-0 ">
+                                <h4>Enter your email</h4>
+
+                                <input name="email " type="email " maxlength="80 " autocomplete="off ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 d-flex justify-content-center mb-2 ">
+                    <button type="submit" class="btn blue btn-lg text-light">SUBMIT</button>
+
+                </div>
+                <!-- <div class="col-md-12 d-f justify-content-center ">
+
+                    <button class="data_download " type="button " style="display: block; margin: auto;margin-bottom: auto;padding: 0px 0px;margin-bottom: 40px; " (click)='makePdf()'>
+                                    <img src="https://targetusmle.com/assets/site/images/PDF_button.png " width="200 " /></button>
+                </div> -->
+
+            </div>
+        </div>
+    </form>
+</section>
